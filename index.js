@@ -1,3 +1,6 @@
-import axios from 'axios'
+import express from 'express'
 
-(async _ => console.log((await axios.get('https://www.google.com/')).data))();
+const app = express();
+const listener = app.listen(process.env.PORT || 8080, () => console.log(`listen on ${listener.address().port}`));
+
+app.get('/', () => {});
