@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ."
+    "start": "bash boot.sh"
   },
   "keywords": [],
   "author": "sharo_jef",
@@ -12,5 +12,8 @@
   "type": "module",
   "dependencies": {
     "axios": "^0.19.2"
+  },
+  "engines": {
+    "node": "^12.0.0"
   }
 }
