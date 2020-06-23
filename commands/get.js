@@ -43,6 +43,7 @@ export default class GetCommand extends Command {
             result = Buffer.from(_result.data, 'binary').toString();
             break;
         case 'image':
+        case 'binary':
             result = _result.data;
             break;
         }

@@ -146,7 +146,7 @@ export default class Parser {
         if (result[result.length - 1].length === 0) {
             result.pop();
         }
-
+console.log(result)
         return result;
     }
 

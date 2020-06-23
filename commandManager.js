@@ -15,6 +15,8 @@ export default class CommandManager {
             if (command[0].type === 'stdout') {
                 stdout = command[0].content;
                 command.shift();
+            } else {
+                stdout = 'stdout';
             }
 
             if (stdout === 'file' && command[0].type !== 'prefix') {
