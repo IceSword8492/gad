@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "bash boot.sh"
+    "start": "bash boot.sh",
+    "debug": "node ."
   },
   "keywords": [],
   "author": "sharo_jef",
@@ -12,6 +13,9 @@
   "type": "module",
   "dependencies": {
     "axios": "^0.19.2",
+    "brainfuck-node": "^1.0.2",
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1"
   },
   "engines": {

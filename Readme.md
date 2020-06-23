@@ -9,5 +9,5 @@ npm start
 
 windows
 ```bash
-node .
+$env:MY_VAR="8000"; node .
 ```
