@@ -23,6 +23,7 @@ export default class GetCommand extends Command {
                 case '-t':
                     i++;
                     responseType = command[i].content;
+                    break;
                 default:
                     uri = command[i].content;
                 }
