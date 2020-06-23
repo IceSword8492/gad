@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "bash boot.sh",
+    "start": "npm i --save node@14.0.0 && node .",
     "debug": "node ."
   },
   "keywords": [],
@@ -17,7 +17,6 @@
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "node": "^14.0.0",
     "sqlite-async": "^1.1.0"
   },
   "engines": {
