@@ -11,6 +11,15 @@ export default class CommandManager {
         let result = '';
         let stdout = 'stdout';
 
+        if (commands && typeof commands === 'object') {
+            if (commands.length < 1) {
+                return null;
+            }
+            if (commands[0] && (commands[0][0].type !== 'prefix' && commands[0][1].type !== 'prefix')) {
+                return null;
+            }
+        }
+
         for (let command of commands) {
             if (command[0].type === 'stdout') {
                 stdout = command[0].content;

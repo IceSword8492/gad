@@ -16,7 +16,8 @@
     "brainfuck-node": "^1.0.2",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "ytdl-core": "^2.1.7"
   },
   "engines": {
     "node": "^14.0.0"
