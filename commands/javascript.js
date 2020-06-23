@@ -1,10 +1,8 @@
-import Brainfuck from 'brainfuck-node'
-
 import Command from '../command.js'
 
 export default class BrainfuckCommand extends Command {
-    name = 'brainfuck';
-    desc = 'execute brainfuck';
+    name = 'javascript';
+    desc = 'execute javascript';
     /**
      * @param {any} client client
      * @param {any} message message
@@ -15,10 +13,8 @@ export default class BrainfuckCommand extends Command {
     exec(client, message, command, stdin) {
         const source = stdin.length > 0 ? stdin : command[2].content;
 
-        const brainFuck = new Brainfuck();
+        const result = (null, eval)(source);
 
-        const result = brainFuck.execute(source);
-
-        return result.output;
+        return result;
     }
 };

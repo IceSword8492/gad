@@ -27,10 +27,10 @@ export default class CommandManager {
                 const iclazz = new clazz.default();
                 if (command[0].type === 'prefix' || (command[0].type === 'stdout' && command[1].type === 'prefix')) {
                     if (iclazz.name === command.find(c => c.type === 'string').content) {
-                        result = iclazz.exec(client, message, command, result, stdout);
+                        result = await iclazz.exec(client, message, command, result, stdout);
                         switch (stdout) {
                         case 'stdout':
-                            message.channel.send(result);
+                            message.channel.send(typeof result === 'string' ? result.substring(0, 2000) : result);
                             result = '';
                         }
                     }
