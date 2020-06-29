@@ -32,7 +32,7 @@ export default class HelpCommand extends Command {
                 return `${iclazz.name}\n${iclazz.desc}`;
             }
             if (cmd.length === 0) {
-                all += `${iclazz.name}\n${iclazz.desc}\n\n`;
+                all += `> ${iclazz.name}\n`;
             }
         }
 
