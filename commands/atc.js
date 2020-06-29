@@ -3,7 +3,13 @@ import Command from '../command.js'
 
 export default class AtcCommand extends Command {
     name = 'atc';
-    desc = 'atc';
+    desc = `live atc command
+
+usage:
+    ${process.env.PREFIX}atc <id>
+
+arguments:
+    id: liveatc.net's file name`;
     /**
      * @param {any} client client
      * @param {any} message message
@@ -18,12 +24,12 @@ export default class AtcCommand extends Command {
             switch (command[i].content) {
             case '--stop':
             case '-s':
-                Atc.getInstance(message.guild.id).stop();
+                (Atc.getInstance(message.guild.id) || {stop: () => null}).stop();
                 if (!message.member.voice || !message.member.voice.channel) {
                     return 'must be joined to voice channel on this guild';
                 }
                 message.member.voice.channel.leave();
-                break;
+                return 'stopped';
             default:
                 id = command[i].content;
             }
