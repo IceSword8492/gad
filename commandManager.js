@@ -15,7 +15,7 @@ export default class CommandManager {
             if (commands.length < 1) {
                 return null;
             }
-            if (commands[0] && (commands[0][0].type !== 'prefix' && commands[0][1].type !== 'prefix')) {
+            if (commands[0] && ((commands[0][0] && commands[0][0].type !== 'prefix') && (commands[0][1] && commands[0][1].type !== 'prefix'))) {
                 return null;
             }
         }
@@ -41,6 +41,11 @@ export default class CommandManager {
                         result = await iclazz.exec(client, message, command, result, stdout);
                         switch (stdout) {
                         case 'stdout':
+                            if (typeof result !== 'string') {
+                                try {
+                                    result = JSON.stringify(result, 0, 4);
+                                } catch {}
+                            }
                             message.channel.send(typeof result === 'string' ? result.substring(0, 2000) : result);
                             result = '';
                         }

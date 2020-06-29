@@ -2,12 +2,6 @@
 
 ## 使い方
 
-linux
-```bash
+```shell
 npm start
-```
-
-windows
-```bash
-$env:MY_VAR="8000"; node .
 ```

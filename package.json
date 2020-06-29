@@ -12,7 +12,9 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "@discordjs/opus": "^0.3.2",
     "axios": "^0.19.2",
+    "basicFFmpeg": "0.0.7",
     "brainfuck-node": "^1.0.2",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
