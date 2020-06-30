@@ -40,9 +40,11 @@ export default class Atc {
         this.id = id;
         this.connection = await channel.join();
 
+        console.log(`https://s1-fmt2.liveatc.net/${this.id}?nocache=${new Date().getTime()}`); // debug
+
         const response = await axios({
             method: 'get',
-            url: `http://s1-fmt2.liveatc.net/${this.id}?nocache=${new Date().getTime()}`,
+            url: `https://s1-fmt2.liveatc.net/${this.id}?nocache=${new Date().getTime()}`,
             responseType: 'stream',
         }).catch(e => console.warn(e));
 
