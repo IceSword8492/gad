@@ -4,7 +4,12 @@ import Command from '../command.js'
 
 export default class BrainfuckCommand extends Command {
     name = 'brainfuck';
-    desc = 'execute brainfuck';
+    synopsis = `${process.env.PREFIX}brainfuck <code>`;
+    examples = `${process.env.PREFIX}brainfuck '--[----->+<]>.+++++++++..'`;
+    desc = `execute brainfuck
+
+**CODE**
+code will be parsed with \`brainfuck-node\``;
     /**
      * @param {any} client client
      * @param {any} message message

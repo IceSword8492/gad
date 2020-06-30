@@ -5,7 +5,7 @@ export default class FileSender {
         if (typeof content === 'string') {
             try {
                 content = JSON.parse(content);
-            } catch (e) {console.error(e)}
+            } catch {}
         }
         message.channel.send('', new MessageAttachment(typeof content === 'string' ? Buffer.from(content) : content, fileName));
     }

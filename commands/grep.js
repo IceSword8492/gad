@@ -2,7 +2,9 @@ import Command from '../command.js'
 
 export default class GrepCommand extends Command {
     name = 'grep';
-    desc = 'grep';
+    synopsis = `${process.env.PREFIX}grep <pattern>`;
+    examples = `*${process.env.PREFIX}echo foo | ${process.env.PREFIX}grep f*`;
+    desc = `grep  searches for <pattern> in stdin. grep prints the matching lines.`;
     /**
      * @param {any} client client
      * @param {any} message message

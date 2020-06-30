@@ -41,7 +41,13 @@ export default class CommandManager {
                         result = await iclazz.exec(client, message, command, result, stdout);
                         switch (stdout) {
                         case 'stdout':
-                            if (typeof result !== 'string') {
+                            if (
+                                typeof result !== 'string'
+                                && (
+                                    typeof result === 'object'
+                                    && !result.embed
+                                )
+                            ) {
                                 try {
                                     result = JSON.stringify(result, 0, 4);
                                 } catch {}

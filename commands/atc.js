@@ -3,13 +3,18 @@ import Command from '../command.js'
 
 export default class AtcCommand extends Command {
     name = 'atc';
+    synopsis = `${process.env.PREFIX}atc [options]... <id>`;
+    examples = `${process.env.PREFIX}atc rjtt_app`;
     desc = `live atc command
 
-usage:
-    ${process.env.PREFIX}atc <id>
+**ARGUMENTS**
+*id*
+liveatc.net's file name
 
-arguments:
-    id: liveatc.net's file name`;
+**OPTIONS**
+*-s, --stop*
+stop and leave
+`;
     /**
      * @param {any} client client
      * @param {any} message message

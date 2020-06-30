@@ -2,7 +2,9 @@ import Command from '../command.js'
 
 export default class EchoCommand extends Command {
     name = 'echo';
-    desc = 'echo';
+    synopsis = `${process.env.PREFIX}echo [string]...`;
+    examples = `${process.env.PREFIX}echo foo`;
+    desc = 'echo the string(s) to standard output';
     /**
      * @param {any} client client
      * @param {any} message message

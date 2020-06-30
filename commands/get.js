@@ -4,7 +4,13 @@ import Command from '../command.js'
 
 export default class GetCommand extends Command {
     name = 'get';
-    desc = 'get';
+    synopsis = `${process.env.PREFIX}get [OPTIONS]... <url>`;
+    examples = `*${process.env.PREFIX}get --type image 'https://img.youtube.com/vi/XlK6JfJcQT8/0.jpg' > a.jpg*\ndownload image to a.jpg`;
+    desc = `download command
+
+**OPTIONS**
+*-t, --type*
+select file type from text, image, binary`;
     /**
      * @param {any} client client
      * @param {any} message message

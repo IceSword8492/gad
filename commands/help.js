@@ -4,7 +4,10 @@ import Command from '../command.js'
 
 export default class HelpCommand extends Command {
     name = 'help';
-    desc = 'help';
+    synopsis = `${process.env.PREFIX}help [command]`;
+    examples = `*${process.env.PREFIX}help help*\nshow help of help command`;
+    desc = `help command`;
+    seeAlso = `type \`${process.env.PREFIX}help\` to see list of all commands`;
     /**
      * @param {any} client client
      * @param {any} message message
@@ -29,7 +32,41 @@ export default class HelpCommand extends Command {
         for (let clazz of this.commandClasses) {
             const iclazz = new clazz.default();
             if (cmd.length > 0 && iclazz.name === cmd) {
-                return `${iclazz.name}\n${iclazz.desc}`;
+                const embed = {
+                    embed: {
+                        title: iclazz.name,
+                        color: 0xff0000,
+                        footer: {
+                            text: "GAD"
+                        },
+                        author: {
+                            name: "Help"
+                        },
+                        fields: [
+                            {
+                                name: "**SYNOPSIS**",
+                                value: iclazz.synopsis
+                            },
+                            {
+                                name: "**DESCRIPTION**",
+                                value: iclazz.desc
+                            },
+                            {
+                                name: '**EXAMPLES**',
+                                value: iclazz.examples
+                            }
+                        ]
+                    }
+                };
+
+                if (iclazz.seeAlso && typeof iclazz.seeAlso === 'string' && iclazz.seeAlso.length > 0) {
+                    embed.embed.fields.push({
+                        name: '**SEE ALSO**',
+                        value: '　' + iclazz.seeAlso.split(/\n/g).join('\n　')
+                    });
+                }
+
+                return embed;
             }
             if (cmd.length === 0) {
                 all += `> ${iclazz.name}\n`;

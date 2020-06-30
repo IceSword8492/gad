@@ -1,7 +1,11 @@
 export default class Command {
     stdout = 'stdout';
+
     name = '';
+    synopsis = '';
+    examples = '';
     desc = '';
+    seeAlso = ''; // optional
     /**
      * @param {any} client client
      * @param {any} message message

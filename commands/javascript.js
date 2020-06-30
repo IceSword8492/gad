@@ -1,8 +1,11 @@
 import Command from '../command.js'
 
-export default class BrainfuckCommand extends Command {
+export default class JavascriptCommand extends Command {
     name = 'javascript';
-    desc = 'execute javascript';
+    synopsis = `${process.env.PREFIX}javascript [code]`;
+    examples = `*${process.env.PREFIX}javascript '1 + 1'*\nexecute javascript`;
+    desc = `execute javascript (eval). print last expression.`;
+    seeAlso = '[JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript)';
     /**
      * @param {any} client client
      * @param {any} message message
