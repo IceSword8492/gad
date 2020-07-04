@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm i --save node@14.0.0 && node .",
+    "start": "rm -rf /app/node_modules/.bin/node; npm i --save node@14.0.0 && node .",
     "debug": "node ."
   },
   "keywords": [],
