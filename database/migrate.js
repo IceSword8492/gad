@@ -3,6 +3,23 @@ import readline from 'readline'
 
 import sqlite from 'sqlite-async'
 
+if (!fs.existsSync('./patchstack')) {
+    fs.mkdirSync('./patchstack');
+    console.log('\u001b[32mcreated\u001b[0m patchstack');
+}
+if (!fs.existsSync('./logs.json')) {
+    fs.writeFileSync('./logs.json', '{"added":[],"applied":[]}');
+    console.log('\u001b[32mcreated\u001b[0m logs.json');
+}
+if (!fs.existsSync('./patch.sql')) {
+    fs.writeFileSync('./patch.sql', '');
+    console.log('\u001b[32mcreated\u001b[0m patch.sql');
+}
+if (!fs.existsSync('./main.db')) {
+    fs.writeFileSync('./main.db', '');
+    console.log('\u001b[32mcreated\u001b[0m main.db');
+}
+
 const patchstack = fs.readdirSync('./patchstack');
 
 const logs = JSON.parse(fs.readFileSync('./logs.json', 'utf8'));
@@ -26,7 +43,6 @@ show: show added and applied
 add: add patch.sql to patchstack and added list
 apply: execute 'added' in logs.json and move to applied
 delete <filename>: delete file from logs.json and patchstack (this is not rollback)
-init: create patchstack, logs.json, main.db, patch.sql
 exit: exit interpreter`);
         break;
     case 'show':
@@ -57,25 +73,6 @@ exit: exit interpreter`);
         } catch {
             console.warn(`couldn't delete file ${args[1]}`);
         }
-        break;
-    case 'init':
-        if (!fs.existsSync('./logs.json')) {
-            fs.writeFileSync('./logs.json', '{"added":[],"applied":[]}');
-            console.log('\u001b[32mcreated\u001b[0m logs.json');
-        }
-        if (!fs.existsSync('./patchstack')) {
-            fs.mkdirSync('./patchstack');
-            console.log('\u001b[32mcreated\u001b[0m patchstack');
-        }
-        if (!fs.existsSync('./patch.sql')) {
-            fs.writeFileSync('./patch.sql', '');
-            console.log('\u001b[32mcreated\u001b[0m patch.sql');
-        }
-        if (!fs.existsSync('./main.db')) {
-            fs.writeFileSync('./main.db', '');
-            console.log('\u001b[32mcreated\u001b[0m main.db');
-        }
-        console.log('\u001b[32mdone\u001b[0m');
         break;
     case 'exit':
         rl.close();
