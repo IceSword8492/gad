@@ -41,16 +41,16 @@ CommandManager.on('raw', async raw => {
             return;
         }
 
-        const con = await sqlite.open('./database/main.db');
+        const con = await sqlite.open('./database/main.db').catch(console.error);
 
-        const row = await con.get('select * from giveaway where message_id = ?', [raw.d.message_id]);
+        const row = await con.get('select * from giveaway where message_id = ?', [raw.d.message_id]).catch(console.error);
 
         if (!row || row.done) {
             return;
         }
 
         if (emoji.name === '🥺') {
-            await con.run('update giveaway set done = ?', [!row.unlimited]);
+            await con.run('update giveaway set done = ?', [!row.unlimited]).catch(console.error);
             if (!row.unlimited) {
                 const embed = message.embeds[0];
                 embed.title = `~~${embed.title}~~`;
@@ -62,7 +62,7 @@ CommandManager.on('raw', async raw => {
         }
 
         if (emoji.name === '❌') {
-            await con.run('update giveaway set done = ?', [1]);
+            await con.run('update giveaway set done = ?', [1]).catch(console.error);
             const embed = message.embeds[0];
             embed.title = `~~${embed.title}~~`;
             message.edit(embed);
