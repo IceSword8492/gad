@@ -1,0 +1,1 @@
+create table if not exists giveaway (message_id text primary key not null, done boolean)

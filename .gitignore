@@ -2,7 +2,6 @@
 node_modules/
 
 # database
-database/patchstack
 database/logs.json
 database/main.db
 database/patch.sql

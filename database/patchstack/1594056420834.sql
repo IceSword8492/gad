@@ -1,0 +1,1 @@
+create table giveaway (id integer primary key, message_id text not null, done boolean, unlimited boolean)
