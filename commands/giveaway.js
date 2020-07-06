@@ -54,7 +54,7 @@ unlimited amount of items for giveaway
             }
         }
 
-        const con = await sqlite.open(`${process.pwd}/../database/main.db`).catch(console.error);
+        const con = await sqlite.open(`${process.pwd || '/app/commands'}/../database/main.db`).catch(console.error);
         const {maxId} = await con.get('select max(id) as maxId from giveaway').catch(console.error) || 0;
         await con.close();
 
@@ -95,7 +95,7 @@ unlimited amount of items for giveaway
             await m.react('🥺');
             await m.react('❌');
 
-            const con = await sqlite.open(`${process.pwd}/../database/main.db`).catch(console.error);
+            const con = await sqlite.open(`${process.pwd || '/app/commands'}/../database/main.db`).catch(console.error);
             await con.run('insert into giveaway (id, message_id, done, unlimited) values (?, ?, ?, ?)', [maxId + 1, m.id, 0, options.infinite]).catch(console.error);
             await con.close();
         });
