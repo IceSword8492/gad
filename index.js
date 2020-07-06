@@ -41,16 +41,16 @@ CommandManager.on('raw', async raw => {
             return;
         }
 
-        const db = await sqlite.open('./database/main.db');
+        const con = await sqlite.open('./database/main.db');
 
-        const row = await db.get('select * from giveaway where message_id = ?', [raw.d.message_id]);
+        const row = await con.get('select * from giveaway where message_id = ?', [raw.d.message_id]);
 
         if (!row || row.done) {
             return;
         }
 
         if (emoji.name === '🥺') {
-            await db.run('update giveaway set done = ?', [!row.unlimited]);
+            await con.run('update giveaway set done = ?', [!row.unlimited]);
             if (!row.unlimited) {
                 const embed = message.embeds[0];
                 embed.title = `~~${embed.title}~~`;
@@ -62,11 +62,13 @@ CommandManager.on('raw', async raw => {
         }
 
         if (emoji.name === '❌') {
-            await db.run('update giveaway set done = ?', [1]);
+            await con.run('update giveaway set done = ?', [1]);
             const embed = message.embeds[0];
             embed.title = `~~${embed.title}~~`;
             message.edit(embed);
             message.channel.send(`**Giveaway #${row.id}** is cancelled`);
         }
+
+        con.close();
     }
 });
