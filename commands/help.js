@@ -62,7 +62,7 @@ export default class HelpCommand extends Command {
                 if (iclazz.seeAlso && typeof iclazz.seeAlso === 'string' && iclazz.seeAlso.length > 0) {
                     embed.embed.fields.push({
                         name: '**SEE ALSO**',
-                        value: '　' + iclazz.seeAlso.split(/\n/g).join('\n　')
+                        value: iclazz.seeAlso
                     });
                 }
 

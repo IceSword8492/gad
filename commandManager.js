@@ -4,6 +4,8 @@ import FileSender from './fileSender.js'
 import Parser from './parser.js'
 
 export default class CommandManager {
+    static cbs = [];
+    static listeners = {};
     static async execute(client, message) {
         await this.getCommandClasses();
 
@@ -52,7 +54,11 @@ export default class CommandManager {
                                     result = JSON.stringify(result, 0, 4);
                                 } catch {}
                             }
-                            message.channel.send(typeof result === 'string' ? result.substring(0, 2000) : result);
+                            const m = await message.channel.send(typeof result === 'string' ? result.substring(0, 2000) : result);
+                            for (const cb of this.cbs) {
+                                await cb(m);
+                            }
+                            this.cbs = [];
                             result = '';
                         }
                     }
@@ -73,5 +79,18 @@ export default class CommandManager {
 
             this.commandClasses.push(await import(`./commands/${file.name}`));
         }
+    }
+
+    static afterSendMessage(cb) {
+        if (typeof cb === 'function') {
+            this.cbs.push(cb);
+        }
+    }
+
+    static on(type, listener) {
+        if (!this.listeners[type]) {
+            this.listeners[type] = [];
+        }
+        this.listeners[type].push(listener);
     }
 }
