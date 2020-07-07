@@ -62,11 +62,15 @@ CommandManager.on('raw', async raw => {
         }
 
         if (emoji.name === '❌') {
-            await con.run('update giveaway set done = ?', [1]).catch(console.error);
-            const embed = message.embeds[0];
-            embed.title = `~~${embed.title}~~`;
-            message.edit(embed);
-            message.channel.send(`**Giveaway #${row.id}** is cancelled`);
+            if (message.embeds[0].fields[0].value !== (await client.users.resolve(raw.d.user_id)).toString()) {
+                message.channel.send('You cannot close this giveaway');
+            } else {
+                await con.run('update giveaway set done = ?', [1]).catch(console.error);
+                const embed = message.embeds[0];
+                embed.title = `~~${embed.title}~~`;
+                message.edit(embed);
+                message.channel.send(`**Giveaway #${row.id}** is closed`);
+            }
         }
 
         con.close();
