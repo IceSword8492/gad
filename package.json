@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node --experimental-modules ."
+    "start": "node -r esm ./index.js"
   },
   "keywords": [],
   "author": "sharo_jef",
@@ -16,6 +16,7 @@
     "brainfuck-node": "^1.0.2",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "opusscript": "0.0.7",
     "sqlite-async": "^1.1.0",
